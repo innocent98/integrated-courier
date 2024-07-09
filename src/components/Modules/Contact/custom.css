@@ -1,0 +1,9 @@
+.sender {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/jpgs/5.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: auto;
+  width: 100%;
+}

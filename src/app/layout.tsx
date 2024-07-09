@@ -1,8 +1,31 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import {
+  Inter,
+  Lato,
+  Open_Sans,
+  Raleway,
+  Roboto,
+} from "next/font/google";
+import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: "700",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  weight: "700",
+});
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html
+      lang='en'
+      className={`${raleway.variable} ${lato.variable} ${openSans.variable} ${inter.className} ${roboto.variable} font-sans`}
+    >
+      <body>{children}</body>
     </html>
   );
 }
