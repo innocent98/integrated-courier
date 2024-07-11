@@ -91,7 +91,7 @@ export const FooterModule = (props: Props) => {
         </div>
       </div>
 
-      <div className='flex h-[70px] w-full items-center justify-center bg-primary_color'>
+      <div className='flex h-[70px] w-full items-center justify-center bg-primary_color p-4'>
         <div className='text-center font-sans text-light-text font-normal-text text-white'>
           Freight delivery courier service © 2023 / ALL RIGHTS RESERVED
         </div>

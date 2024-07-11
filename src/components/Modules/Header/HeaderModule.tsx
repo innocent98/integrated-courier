@@ -1,7 +1,11 @@
+"use client";
+
 import { HeaderLinkComponent } from "@/components/Components/HeaderLinkComponent/HeaderLinkComponent";
 import { MenuOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import "./custom.css";
+import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   headerTitle: string;
@@ -35,7 +39,10 @@ export const HeaderModule = (props: Props) => {
     >
       {/* left */}
       <div className='flex-[1] cursor-pointer font-roboto text-[18px] font-bold-text uppercase text-primary_color md:text-[30px]'>
-        {props.headerTitle}
+        {/* {props.headerTitle} */}
+        <Link href='/'>
+          <Image src='/pngs/logo.png' alt='logo' width={200} height={200} />
+        </Link>
       </div>
 
       {/* right */}

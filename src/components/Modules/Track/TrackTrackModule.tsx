@@ -29,12 +29,12 @@ export const TrackTrackModule = (props: Props) => {
 
         <div className='mt-4 flex w-full flex-wrap items-center justify-center gap-4 lg:items-start lg:justify-start lg:gap-0'>
           <TextInputComponent
-            placeholder='Enter your tacking number e.g CRG-11-xxxx'
+            placeholder='Enter your tacking number e.g ICS-11-xxxx'
             width='80%'
             type={"text"}
           />
 
-          <button className='h-[40px] w-[80%] rounded-lg bg-primary_color font-sans text-button-text font-normal-text text-white lg:-ml-2 lg:w-[18%] lg:rounded-none lg:rounded-r-lg'>
+          <button className='h-[40px] w-[80%] rounded-md bg-primary_color font-sans text-button-text font-normal-text text-white lg:-ml-2 lg:w-[18%] lg:rounded-none lg:rounded-r-md'>
             Track Your Shipment
           </button>
         </div>
