@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./custom.css";
 
 type Props = {
@@ -14,9 +15,12 @@ export const ContactModule = (props: Props) => {
           We have multiple lucrative packages for the individual senders
         </div>
 
-        <button className='border-[2px] border-primary_color bg-primary_color p-2 px-10 font-lato text-button-text duration-300 ease-in hover:bg-transparent hover:text-primary_color'>
+        <Link
+          href='mailto:integratedcurriercompany@gmail.com'
+          className='border-[2px] border-primary_color bg-primary_color p-2 px-10 font-lato text-button-text duration-300 ease-in hover:bg-transparent hover:text-primary_color'
+        >
           Check Packages
-        </button>
+        </Link>
       </div>
 
       {/* right */}
@@ -27,9 +31,12 @@ export const ContactModule = (props: Props) => {
           consignments
         </div>
 
-        <button className='border-[2px] border-white bg-white p-2 px-10 font-lato text-button-text text-primary_color duration-300 ease-in hover:bg-transparent hover:text-white'>
+        <Link
+          href='mailto:integratedcurriercompany@gmail.com'
+          className='border-[2px] border-white bg-white p-2 px-10 font-lato text-button-text text-primary_color duration-300 ease-in hover:bg-transparent hover:text-white'
+        >
           Contact Us
-        </button>
+        </Link>
       </div>
     </div>
   );

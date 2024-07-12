@@ -13,7 +13,7 @@ export const PUT = async (request: any, { params }: any) => {
 
     const order = await Order.findByIdAndUpdate(
       id,
-      { $set: body },
+      { $set: { ...orderData } },
       { new: true }
     );
 

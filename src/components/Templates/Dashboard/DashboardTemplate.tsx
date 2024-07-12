@@ -11,7 +11,7 @@ type Props = {
 
 export const DashboardTemplate = (props: Props) => {
   return (
-    <Layout style={{ height: "100%" }} className='overflow-x-hidden'>
+    <Layout style={{ height: "100%" }} className='overflow-auto'>
       <Header
         style={{ padding: 0 }}
         className='relative flex h-20 w-full bg-white shadow-lg'
@@ -19,7 +19,7 @@ export const DashboardTemplate = (props: Props) => {
         <HeaderModule {...props.headerModuleProps} />
       </Header>
 
-      <Content className='overflow-auto overflow-x-hidden bg-white'>
+      <Content className='overflow-auto bg-white'>
         <DashboardModule />
       </Content>
 

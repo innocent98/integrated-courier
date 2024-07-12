@@ -1,1 +1,1 @@
-export const baseUrl = "https://integrated-courier.vercel.app/api";
+export const baseUrl = "http://localhost:3000/api";

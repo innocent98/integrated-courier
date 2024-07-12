@@ -1,5 +1,6 @@
 import { TextInputComponent } from "@/components/Components/TextInputComponent/TextInputComponent";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   // title: string;
@@ -54,9 +55,12 @@ export const ContactFeedbackModule = (props: Props) => {
             className='w-[350px] border border-custom_lightgray bg-white p-2 px-3 font-sans text-light-text font-normal-text text-custom_lightgray placeholder:text-custom_lightgray focus:outline-none lg:w-[88%]'
           ></textarea>
 
-          <button className='w-[350px] bg-primary_color p-2 font-lato text-button-text text-white'>
+          <Link
+            href='mailto:integratedcurriercompany@gmail.com'
+            className='w-[350px] bg-primary_color p-2 text-center font-lato text-button-text text-white hover:text-white'
+          >
             Request A Quote / Give Feedback
-          </button>
+          </Link>
         </div>
       </div>
     </div>

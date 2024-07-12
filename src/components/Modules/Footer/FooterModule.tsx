@@ -57,9 +57,12 @@ export const FooterModule = (props: Props) => {
                 className='w-[80%] p-2 font-sans font-normal-text text-custom_lightgray placeholder:text-custom_lightgray focus:outline-none'
               />
 
-              <div className='cursor-pointer bg-primary_color p-2'>
+              <Link
+                href='mailto:integratedcurriercompany@gmail.com'
+                className='cursor-pointer bg-primary_color p-2'
+              >
                 <CheckOutlined className='text-2xl text-white' />
-              </div>
+              </Link>
             </div>
           </div>
 

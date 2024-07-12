@@ -1,7 +1,8 @@
 import { TextInputComponent } from "../TextInputComponent/TextInputComponent";
 
 type Props = {
-  // Add props here
+  handleChange: (e: any) => void;
+  loading: boolean;
 };
 
 type Order = {
@@ -24,7 +25,7 @@ type Order = {
 };
 
 export const UpdateComponent = (props: Props) => {
-  const order = props as Order;
+  const order = props as unknown as Order;
 
   return (
     <div className='flex w-full flex-wrap items-center justify-center gap-6'>
@@ -110,24 +111,30 @@ export const UpdateComponent = (props: Props) => {
         placeholder={"Current Location"}
         width={"350px"}
         type={"text"}
+        name='currentLocation'
+        handleChange={props.handleChange}
         defaultValue={`Current Location: ${order?.currentLocation}`}
       />
       <select
-        name='status'
+        name='orderStatus'
         id=''
+        onChange={props.handleChange}
         defaultValue={`Item ${order?.orderStatus}`}
         className='h-[40px] w-[350px] rounded-md border border-custom_lightgray bg-white px-3 font-sans text-light-text font-normal-text text-custom_lightgray placeholder:text-custom_lightgray focus:outline-none'
       >
-        <option value=''>{`Item ${order?.orderStatus}`}</option>
-        <option value='pending_delivery'>Item Pending Delivery</option>
+        <option
+          value={order?.orderStatus}
+        >{`Item ${order?.orderStatus}`}</option>
+        <option value='pending'>Item Pending Delivery</option>
         <option value='delivered'>Item Delivered</option>
       </select>
 
       <button
         type='submit'
+        disabled={props.loading}
         className='my-6 h-[40px] w-[350px] rounded-md bg-primary_color font-lato text-button-text text-white'
       >
-        Continue
+        {props.loading ? "Please wait..." : "Continue"}
       </button>
     </div>
   );

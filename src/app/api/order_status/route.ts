@@ -2,10 +2,8 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import Order from "@/models/Order";
 
-export const GET = async (request: any) => {
+export const POST = async (request: any) => {
   await connectDB();
-
-  // const { id } = params;
 
   try {
     const body = await request.json();
@@ -16,9 +14,12 @@ export const GET = async (request: any) => {
     if (order) {
       return new NextResponse(JSON.stringify(order), { status: 200 });
     } else {
-      return new NextResponse(JSON.stringify({ message: "No order found!" }), {
-        status: 404,
-      });
+      return new NextResponse(
+        JSON.stringify({ message: "Record not found!" }),
+        {
+          status: 404,
+        }
+      );
     }
   } catch (err) {
     console.log("err", err);

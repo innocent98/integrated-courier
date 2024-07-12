@@ -2,6 +2,7 @@ import { HomeIntroServiceComponent } from "@/components/Components/HomeIntroServ
 import "./custom.css";
 import { AwesomeServiceComponent } from "@/components/Components/AwesomeServiceComponent/AwesomeServiceComponent";
 import AnimatedComponent from "@/components/Components/AnimatedComponent/AnimatedComponent";
+import Link from "next/link";
 
 type Props = {
   introTitle: string;
@@ -13,7 +14,10 @@ type Props = {
 export const HomeIntroModule = (props: Props) => {
   return (
     <div className='home-intro flex flex-col items-center justify-center p-4 text-white'>
-      <AnimatedComponent direction='bottom' classname="w-full flex flex-col items-center justify-center">
+      <AnimatedComponent
+        direction='bottom'
+        classname='w-full flex flex-col items-center justify-center'
+      >
         <div className='text-center font-raleway text-[36px] font-bold-text sm:text-[40px] md:text-big-text lg:text-title-text'>
           {props.introTitle}
         </div>
@@ -29,9 +33,12 @@ export const HomeIntroModule = (props: Props) => {
             className='h-[50px] w-full rounded-[4px] px-6 font-sans text-light-text font-normal-text text-custom_gray placeholder:text-custom_gray focus:outline-none md:w-[68%]'
           />
 
-          <button className='h-[50px] w-full rounded-[4px] bg-primary_color text-button-text font-semibold-text text-white md:w-[30%]'>
-            Track Now
-          </button>
+          <Link
+            href='/track'
+            className='flex h-[50px] w-full items-center justify-center rounded-[4px] bg-primary_color text-button-text font-semibold-text text-white hover:text-white md:w-[30%]'
+          >
+            <div>Track Now</div>
+          </Link>
         </div>
       </AnimatedComponent>
     </div>

@@ -56,7 +56,7 @@ export const DashboardComponent = (props: Props) => {
       receiverName: item.receiverName,
       itemTitle: item.itemTitle,
       trackingNo: item.trackingNo,
-      orderStatus: item.orderStatus,
+      orderStatus: item.orderStatus?.toUpperCase(),
     };
 
     dataSummaries.push(summary);
@@ -77,6 +77,7 @@ export const DashboardComponent = (props: Props) => {
       rowSelection={rowSelection}
       columns={columns}
       dataSource={dataSummaries}
+      className="w-full"
     />
   );
 };
