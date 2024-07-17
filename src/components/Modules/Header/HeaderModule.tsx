@@ -35,18 +35,18 @@ export const HeaderModule = (props: Props) => {
 
   return (
     <div
-      className={`navbar-container relative flex w-full items-center justify-between ${isSticky ? "sticky" : ""} px-4 sm:px-16 md:px-20 lg:px-12`}
+      className={`navbar-container relative flex h-auto py-2 w-full items-center justify-between ${isSticky ? "sticky" : ""} px-4 sm:px-16 md:px-20 lg:px-12`}
     >
       {/* left */}
       <div className='flex-[1] cursor-pointer font-roboto text-[18px] font-bold-text uppercase text-primary_color md:text-[30px]'>
         {/* {props.headerTitle} */}
         <Link href='/'>
-          <Image src='/pngs/logo.png' alt='logo' width={200} height={200} />
+          <Image src='/jpgs/logo.jpg' alt='logo' width={200} height={200} className="h-[60px] w-[60px] lg:w-[150px] lg:h-[150px] object-contain" />
         </Link>
       </div>
 
       {/* right */}
-      <div className='hidden flex-[1] justify-end gap-12 lg:flex'>
+      <div className='hidden flex-[1.5] justify-end gap-12 lg:flex'>
         {props.links.map((item) => (
           <HeaderLinkComponent key={item.id} {...item} />
         ))}

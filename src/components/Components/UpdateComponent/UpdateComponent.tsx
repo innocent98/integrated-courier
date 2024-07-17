@@ -87,7 +87,7 @@ export const UpdateComponent = (props: Props) => {
         placeholder={"Price"}
         width={"350px"}
         type={"text"}
-        value={`Price: NGN${order?.price}`}
+        value={`Price: $${order?.price}`}
       />
       <TextInputComponent
         placeholder={"Pickup From"}

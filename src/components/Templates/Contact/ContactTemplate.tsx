@@ -15,7 +15,7 @@ export const ContactTemplate = (props: Props) => {
     <Layout style={{ height: "100%" }} className='overflow-x-hidden'>
       <Header
         style={{ padding: 0 }}
-        className='relative flex h-20 w-full bg-white px-4 shadow-lg sm:px-16 md:px-20 lg:px-12'
+        className='relative flex h-auto w-full bg-white px-4 shadow-lg sm:px-16 md:px-20 lg:px-12'
       >
         <HeaderModule {...props.headerModuleProps} />
       </Header>

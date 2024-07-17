@@ -15,7 +15,7 @@ export const UpdateTemplate = (props: Props) => {
     <Layout style={{ height: "100%" }} className='overflow-x-hidden'>
       <Header
         style={{ padding: 0 }}
-        className='relative flex h-20 w-full bg-white shadow-lg'
+        className='relative flex h-auto w-full bg-white shadow-lg'
       >
         <HeaderModule {...props.headerModuleProps} />
       </Header>
