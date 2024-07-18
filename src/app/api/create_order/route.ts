@@ -51,25 +51,27 @@ export const POST = async (request: Request) => {
       ...orderData,
     });
 
-    confirmationEmailSender(
-      newOrder.senderEmail,
-      newOrder.senderName,
-      newOrder.trackingNo,
-      newOrder.pickupFrom,
-      newOrder.deliverTo
-    );
+    const savedOrder = await newOrder.save();
 
-    confirmationEmailReceiver(
-      newOrder.receiverEmail,
-      newOrder.receiverName,
-      newOrder.trackingNo,
-      newOrder.pickupFrom,
-      newOrder.deliverTo
-    );
+    if (savedOrder) {
+      confirmationEmailSender(
+        newOrder.senderEmail,
+        newOrder.senderName,
+        newOrder.trackingNo,
+        newOrder.pickupFrom,
+        newOrder.deliverTo
+      );
 
-    await newOrder.save();
+      confirmationEmailReceiver(
+        newOrder.receiverEmail,
+        newOrder.receiverName,
+        newOrder.trackingNo,
+        newOrder.pickupFrom,
+        newOrder.deliverTo
+      );
+    }
 
-    return new NextResponse(JSON.stringify(newOrder), { status: 200 });
+    return new NextResponse(JSON.stringify(savedOrder), { status: 200 });
   } catch (err) {
     console.log("err", err);
     return new NextResponse(JSON.stringify({ message: "Connection Error" }), {
