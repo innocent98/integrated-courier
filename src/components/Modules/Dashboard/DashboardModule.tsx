@@ -13,9 +13,11 @@ export const DashboardModule = (props: Props) => {
 
   const handleFetchOrder = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/orders`);
+      const res = await fetch(`${baseUrl}/orders`, { cache: "no-store" });
 
-      setOrders(res.data);
+      const data = await res.json();
+
+      setOrders(data);
     } catch (error) {
       console.log(error);
     }

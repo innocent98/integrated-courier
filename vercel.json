@@ -5,6 +5,12 @@
       "headers": {
         "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate"
       }
+    },
+    {
+      "src": "/api/create_order",
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate"
+      }
     }
   ]
 }

@@ -53,6 +53,8 @@ export const POST = async (request: Request) => {
 
     const savedOrder = await newOrder.save();
 
+    new NextResponse(JSON.stringify(savedOrder), { status: 200 });
+
     if (savedOrder) {
       confirmationEmailSender(
         newOrder.senderEmail,
@@ -70,8 +72,6 @@ export const POST = async (request: Request) => {
         newOrder.deliverTo
       );
     }
-
-    return new NextResponse(JSON.stringify(savedOrder), { status: 200 });
   } catch (err) {
     console.log("err", err);
     return new NextResponse(JSON.stringify({ message: "Connection Error" }), {

@@ -27,9 +27,15 @@ export const TrackTrackModule = (props: Props) => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${baseUrl}/order_status`, { trackingNo });
+      const res = await fetch(`${baseUrl}/order_status`, {
+        cache: "no-store",
+        method: "POST",
+        body: JSON.stringify(trackingNo),
+      });
 
-      setOrder(res.data);
+      const data = await res.json();
+
+      setOrder(data);
       setLoading(false);
     } catch (error: any) {
       setLoading(false);
