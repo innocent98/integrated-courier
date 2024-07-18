@@ -51,23 +51,23 @@ export const POST = async (request: Request) => {
       ...orderData,
     });
 
+    confirmationEmailSender(
+      newOrder.senderEmail,
+      newOrder.senderName,
+      newOrder.trackingNo,
+      newOrder.pickupFrom,
+      newOrder.deliverTo
+    );
+
+    confirmationEmailReceiver(
+      newOrder.receiverEmail,
+      newOrder.receiverName,
+      newOrder.trackingNo,
+      newOrder.pickupFrom,
+      newOrder.deliverTo
+    );
+
     await newOrder.save();
-
-    await confirmationEmailSender(
-      senderEmail,
-      senderName,
-      `ICS-${trackingNo?.slice(0, 13)}`,
-      pickupFrom,
-      deliverTo
-    );
-
-    await confirmationEmailReceiver(
-      receiverEmail,
-      receiverName,
-      `ICS-${trackingNo?.slice(0, 13)}`,
-      pickupFrom,
-      deliverTo
-    );
 
     return new NextResponse(JSON.stringify(newOrder), { status: 200 });
   } catch (err) {
