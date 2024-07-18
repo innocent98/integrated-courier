@@ -6,7 +6,7 @@ export const GET = async (request: Request) => {
   await connectDB();
 
   try {
-    const orders = await Order.find().limit(100);
+    const orders = await Order.find().limit(200);
 
     if (orders.length > 0) {
       return new NextResponse(JSON.stringify(orders), { status: 200 });
