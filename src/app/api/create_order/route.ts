@@ -1,9 +1,8 @@
 import connectDB from "@/lib/db";
 import { generateUniqueTrackingNo } from "@/utils/uniqueNumber";
 import Order from "@/models/Order";
-import { confirmationEmailReceiver } from "@/config/new_order_receiver";
-import { confirmationEmailSender } from "@/config/new_order_sender";
 import { NextResponse } from "next/server";
+import { sendConfirmationEmails } from "@/utils/sendConfirmationEmail";
 
 export const POST = async (request: Request) => {
   try {
@@ -36,27 +35,7 @@ export const POST = async (request: Request) => {
 
     const savedOrder = await newOrder.save();
 
-    if (savedOrder) {
-      try {
-        confirmationEmailSender(
-          newOrder.senderEmail,
-          newOrder.senderName,
-          newOrder.trackingNo,
-          newOrder.pickupFrom,
-          newOrder.deliverTo
-        );
-
-        confirmationEmailReceiver(
-          newOrder.receiverEmail,
-          newOrder.receiverName,
-          newOrder.trackingNo,
-          newOrder.pickupFrom,
-          newOrder.deliverTo
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    await sendConfirmationEmails(newOrder);
 
     return new NextResponse(JSON.stringify(savedOrder), { status: 200 });
   } catch (err) {
