@@ -53,7 +53,7 @@ export const POST = async (request: Request) => {
 
     await newOrder.save();
 
-    confirmationEmailSender(
+    await confirmationEmailSender(
       senderEmail,
       senderName,
       `ICS-${trackingNo?.slice(0, 13)}`,
@@ -61,7 +61,7 @@ export const POST = async (request: Request) => {
       deliverTo
     );
 
-    confirmationEmailReceiver(
+    await confirmationEmailReceiver(
       receiverEmail,
       receiverName,
       `ICS-${trackingNo?.slice(0, 13)}`,
