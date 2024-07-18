@@ -18,7 +18,7 @@ export const DashboardModule = (props: Props) => {
       const res = await fetch(`${baseUrl}/orders?cacheBust=${timestamp}`, {
         cache: "no-store",
         next: {
-          revalidate: 0,
+          revalidate: 60,
         },
       });
 
