@@ -13,13 +13,8 @@ export const DashboardModule = (props: Props) => {
 
   const handleFetchOrder = async () => {
     try {
-      const timestamp = new Date().getTime();
-
-      const res = await fetch(`${baseUrl}/orders?cacheBust=${timestamp}`, {
+      const res = await fetch(`${baseUrl}/orders`, {
         cache: "no-store",
-        next: {
-          revalidate: 60,
-        },
       });
 
       const data = await res.json();

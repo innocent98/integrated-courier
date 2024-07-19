@@ -23,14 +23,12 @@ export const CreateModule = (props: Props) => {
     setLoading(true);
 
     try {
-      await fetch(`${baseUrl}/create_order`, {
-        cache: "no-store",
-        method: "POST",
-        body: JSON.stringify(inputs),
-      });
+      await axios.post(`${baseUrl}/create_order`, { ...inputs });
 
       setLoading(false);
       alert("Order created successfully.");
+
+      window.location.reload();
     } catch (error) {
       console.log(error);
       setLoading(false);

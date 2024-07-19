@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "api/models/Order.js", "api/utils/uniqueNumber.js", "api/utils/sendConfirmationEmail.js", "api/config/new_order_receiver.js", "api/config/new_order_sender.js"],
   "exclude": ["node_modules"]
 }
