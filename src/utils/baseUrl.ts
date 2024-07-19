@@ -1,1 +1,1 @@
-export const baseUrl = "http://localhost:8061/api/order";
+export const baseUrl = "https://integrated-courier-api.vercel.app/api/order";
