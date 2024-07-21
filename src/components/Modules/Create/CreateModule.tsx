@@ -2,7 +2,9 @@ import { TextInputComponent } from "@/components/Components/TextInputComponent/T
 import { baseUrl } from "@/utils/baseUrl";
 import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// import Autocomplete from "react-google-autocomplete";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 type Props = {
   // title: string;
@@ -11,12 +13,26 @@ type Props = {
 export const CreateModule = (props: Props) => {
   const [inputs, setInputs] = useState({});
   const [loading, setLoading] = useState(false);
+  const [pickupFrom, setPickupFrom] = useState<any>(null);
+  const [deliverTo, setDeliverTo] = useState<any>(null);
 
   const handleChange = (e: any) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+
+  useEffect(() => {
+    if (pickupFrom) {
+      setInputs((prev) => {
+        return { ...prev, pickupFrom: pickupFrom.label };
+      });
+    } else if (deliverTo) {
+      setInputs((prev) => {
+        return { ...prev, deliverTo: deliverTo.label };
+      });
+    }
+  }, [pickupFrom, deliverTo]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -56,6 +72,11 @@ export const CreateModule = (props: Props) => {
         </div>
 
         <form onSubmit={handleSubmit} className='flex flex-col items-center'>
+          {/* <Autocomplete
+            apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+            onPlaceSelected={(place) => console.log(place)}
+          /> */}
+
           <div className='flex w-full flex-wrap items-center justify-center gap-6'>
             <TextInputComponent
               placeholder={"Sender Name"}
@@ -135,23 +156,33 @@ export const CreateModule = (props: Props) => {
               type={"number"}
               name='price'
               required
+              defaultValue="$"
               handleChange={handleChange}
             />
-            <TextInputComponent
-              placeholder={"Pickup From"}
-              width={"350px"}
-              type={"text"}
-              name='pickupFrom'
-              required
-              handleChange={handleChange}
+
+            <GooglePlacesAutocomplete
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              selectProps={{
+                value: pickupFrom,
+                onChange(newValue, actionMeta) {
+                  setPickupFrom(newValue);
+                },
+                placeholder: "Pickup From",
+                className:
+                  "w-[350px] rounded-md border border-custom_lightgray",
+              }}
             />
-            <TextInputComponent
-              placeholder={"Deliver To"}
-              width={"350px"}
-              type={"text"}
-              name='deliverTo'
-              required
-              handleChange={handleChange}
+            <GooglePlacesAutocomplete
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              selectProps={{
+                value: deliverTo,
+                onChange(newValue, actionMeta) {
+                  setDeliverTo(newValue);
+                },
+                placeholder: "Deliver To",
+                className:
+                  "w-[350px] rounded-md border border-custom_lightgray",
+              }}
             />
           </div>
 

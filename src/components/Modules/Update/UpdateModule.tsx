@@ -5,25 +5,45 @@ import { baseUrl } from "@/utils/baseUrl";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 type Props = {
   id: string;
 };
 
 export const UpdateModule = (props: Props) => {
-  const [order, setOrder] = useState<typeof UpdateComponent>();
+  const [order, setOrder] =
+    useState<React.ComponentProps<typeof UpdateComponent>>();
   const [inputs, setInputs] = useState({});
   const [loading, setLoading] = useState(false);
+  const [currentLocationInput, setCurrentLocationInput] = useState<any>(null);
+  const [pickupFromInput, setPickupFromInput] = useState<any>(null);
+  const [deliverToInput, setdeliverToInput] = useState<any>(null);
 
   const handleChange = (e: any) => {
     setInputs((prev) => {
-      if (e.target.name === "currentLocation") {
-        return { ...prev, [e.target.name]: e.target.value.slice(18) };
-      } else {
-        return { ...prev, [e.target.name]: e.target.value };
-      }
+      return {
+        ...prev,
+        [e.target.name]: e.target.value.split(":")[1].trim(),
+      };
     });
   };
+
+  useEffect(() => {
+    if (currentLocationInput) {
+      setInputs((prev) => {
+        return { ...prev, currentLocation: currentLocationInput.label };
+      });
+    } else if (pickupFromInput) {
+      setInputs((prev) => {
+        return { ...prev, pickupFrom: pickupFromInput.label };
+      });
+    } else if (deliverToInput) {
+      setInputs((prev) => {
+        return { ...prev, deliverTo: deliverToInput.label };
+      });
+    }
+  }, [pickupFromInput, deliverToInput, currentLocationInput]);
 
   useEffect(() => {
     let subscribe = true;
@@ -87,6 +107,12 @@ export const UpdateModule = (props: Props) => {
             {...order}
             handleChange={handleChange}
             loading={loading}
+            currentLocationInput={currentLocationInput}
+            setCurrentLocationInput={setCurrentLocationInput}
+            setPickupFromInput={setPickupFromInput}
+            pickupFromInput={pickupFromInput}
+            setdeliverToInput={setdeliverToInput}
+            deliverToInput={deliverToInput}
           />
         </form>
       </div>
