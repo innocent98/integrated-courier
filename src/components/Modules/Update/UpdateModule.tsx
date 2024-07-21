@@ -36,7 +36,7 @@ export const UpdateModule = (props: Props) => {
     });
   };
 
-  console.log(inputs);
+  // console.log(inputs);
 
   useEffect(() => {
     if (currentLocationInput) {
