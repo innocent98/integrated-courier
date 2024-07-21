@@ -22,12 +22,21 @@ export const UpdateModule = (props: Props) => {
 
   const handleChange = (e: any) => {
     setInputs((prev) => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value.split(":")[1].trim(),
-      };
+      if (e.target.name === "orderStatus") {
+        return {
+          ...prev,
+          [e.target.name]: e.target.value,
+        };
+      } else {
+        return {
+          ...prev,
+          [e.target.name]: e.target.value?.split(":")[1]?.trim(),
+        };
+      }
     });
   };
+
+  console.log(inputs);
 
   useEffect(() => {
     if (currentLocationInput) {
