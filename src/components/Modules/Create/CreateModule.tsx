@@ -1,5 +1,5 @@
 import { TextInputComponent } from "@/components/Components/TextInputComponent/TextInputComponent";
-import { baseUrl } from "@/utils/baseUrl";
+import { baseUrl, baseUrl2 } from "@/utils/baseUrl";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -27,7 +27,8 @@ export const CreateModule = (props: Props) => {
       setInputs((prev) => {
         return { ...prev, pickupFrom: pickupFrom.label };
       });
-    } else if (deliverTo) {
+    }
+    if (deliverTo) {
       setInputs((prev) => {
         return { ...prev, deliverTo: deliverTo.label };
       });
@@ -39,7 +40,7 @@ export const CreateModule = (props: Props) => {
     setLoading(true);
 
     try {
-      await axios.post(`${baseUrl}/create_order`, { ...inputs });
+      await axios.post(`${baseUrl2}/create_order`, { ...inputs });
 
       setLoading(false);
       alert("Order created successfully.");
@@ -47,6 +48,7 @@ export const CreateModule = (props: Props) => {
       window.location.reload();
     } catch (error) {
       console.log(error);
+
       setLoading(false);
       alert("An error occured, please try again");
     }
@@ -156,7 +158,7 @@ export const CreateModule = (props: Props) => {
               type={"number"}
               name='price'
               required
-              defaultValue="$"
+              defaultValue='$'
               handleChange={handleChange}
             />
 
